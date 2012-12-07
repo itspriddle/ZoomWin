@@ -1,4 +1,4 @@
-*ZoomWin.txt*	Zoom into/out-of a window		Jun 18, 2012
+*ZoomWin.txt*	Zoom into/out-of a window		Oct 31, 2012
 Authors: Charles E. Campbell, Jr.			*zoomwin*
          Ron Aaron
 Copyright: (c) 2004-2012 by Charles E. Campbell, Jr.	*zoomwin-copyright*
@@ -61,6 +61,25 @@ Copyright: (c) 2004-2012 by Charles E. Campbell, Jr.	*zoomwin-copyright*
 <			 The function, ZWStatline(), is called by ZoomWin()
 			 every time it changes state.
 
+	*g:zoomwin_localoptlist*	specify a set of windows options to be
+				saved and restored during zoom-in and zoom-out.
+				It may be empty.
+				Default:  >
+				let s:localoptlist   = [
+				\ "ai"  , "ar"  , "bh"  , "bin", "bl"  ,
+				\ "bomb", "bt"  , "cfu" , "ci" , "cin" ,
+				\ "cink", "cino", "cinw", "cms", "com" ,
+				\ "cpt" , "efm" , "eol" , "ep" , "et"  ,
+				\ "fenc", "fex" , "ff"  , "flp", "fo"  ,
+				\ "ft"  , "gp"  , "imi" , "ims", "inde",
+				\ "inex", "indk", "inf" , "isk", "key" ,
+				\ "kmp" , "lisp", "mps" , "ml" , "ma"  ,
+				\ "mod" , "nf"  , "ofu" , "oft", "pi"  ,
+				\ "qe"  , "ro"  , "sw"  , "sn" , "si"  ,
+				\ "sts" , "spc" , "spf" , "spl", "sua" ,
+				\ "swf" , "smc" , "syn" , "ts" , "tx"  ,
+				\ "tw"  , "udf" , "wm"]
+<
 	*g:zoomwin_preserve_taglist*	open and close a taglist window on
 	                              zooms
 
@@ -71,6 +90,18 @@ Copyright: (c) 2004-2012 by Charles E. Campbell, Jr.	*zoomwin-copyright*
 ==============================================================================
 4. History						*zoomwin-history*
 
+	v25 Jul 30, 2012 : * (Paul, google01239) ZoomWin wasn't saving the
+			     local value of |'diff'|.  It has now been included
+			     in the s:localoptlist (options which are local).
+			   * (Adam George) when clipboard=unnamed, ZoomWin
+			     was overwriting the @* register.  Fixed.
+	    Oct 16, 2012   * (Marcin Szamotulski) reported that vim -o x y,
+			     then zooming in and zooming back out resulted
+			     in |:swapname| showing "No swap file".  Fixed.
+	    Oct 31, 2012   * (Adam George) reported that |E13| errors occurred
+			     when one zoomed in, zoomed out, and then
+			     attempted to write.  Fixed (due to [Scratch]
+			     file renaming)
 	v24 Jan 29, 2009 : * |g:ZoomWin_funcref| supported
 	    May 22, 2009   * supports the saving and restoring of window
 			     variables across zooms
